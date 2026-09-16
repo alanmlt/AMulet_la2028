@@ -84,13 +84,12 @@
                                 out.println("<td>");
                                 out.println(a.getSport().getNom());
                                 out.println("</td>");
-                               
                             }
                         %>
                     </tr>
                 </tbody>
             </table>
-        </body>
+            </body>
          </div>
        </div>
   

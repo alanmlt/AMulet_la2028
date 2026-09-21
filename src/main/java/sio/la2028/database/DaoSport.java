@@ -1,5 +1,6 @@
 package sio.la2028.database;
 
+import sio.la2028.model.Athlete;
 import sio.la2028.model.Pays;
 import sio.la2028.model.Sport;
 
@@ -39,6 +40,60 @@ public class DaoSport {
         }
         return lesSports;
 
+    }
+
+    public static Sport getSportById(Connection cnx, int idSport){
+
+        Sport s = new Sport();
+        try{
+            requeteSql = cnx.prepareStatement("select s.id as s_id, s.nom as s_nom" +
+                    " from sport s " +
+                    " where s.id = ? ");
+            //System.out.println("REQ="+ requeteSql);
+            requeteSql.setInt(1, idSport);
+            resultatRequete = requeteSql.executeQuery();
+
+            if (resultatRequete.next()){
+
+                s.setId(resultatRequete.getInt("s_id"));
+                s.setNom(resultatRequete.getString("s_nom"));
+
+            }
+
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+        return s;
+    }
+
+    public static ArrayList<Athlete> getSportByAthleteById(Connection cnx, int idSport) {
+
+        ArrayList<Athlete> lesAthletes = new ArrayList<Athlete>();
+        try {
+            requeteSql = cnx.prepareStatement(
+                    "select a.id as a_id, a.prenom as a_prenom, a.nom as a_nom, s.id as s_id, s.nom as s_nom " +
+                            "from athlete a inner join sport s " +
+                            "on a.sport_id = s.id " +
+                            "where s.id = ?"
+            );
+
+            requeteSql.setInt(1, idSport);
+            resultatRequete = requeteSql.executeQuery();
+
+            while (resultatRequete.next()) {
+                Athlete a =  new Athlete();
+                a.setId(resultatRequete.getInt("a_id"));
+                a.setNom(resultatRequete.getString("a_nom"));
+                a.setPrenom(resultatRequete.getString("a_prenom"));
+
+                lesAthletes.add(a);
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+            System.out.println("La requête de getLesPompiers e généré une erreur");
+        }
+        return  lesAthletes;
     }
 
 }

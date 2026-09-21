@@ -1,5 +1,6 @@
 package sio.la2028.database;
 
+import sio.la2028.model.Athlete;
 import sio.la2028.model.Pays;
 import sio.la2028.model.Sport;
 
@@ -39,6 +40,36 @@ public class DaoSport {
         }
         return lesSports;
 
+    }
+
+    public static ArrayList<Athlete> getSportByAthleteById(Connection cnx, int idSport) {
+
+        ArrayList<Athlete> lesAthletes = new ArrayList<Athlete>();
+        try {
+            requeteSql = cnx.prepareStatement(
+                    "select a.id as a_id, a.prenom as a_prenom, a.nom as a_nom, s.id as s_id, s.nom as s_nom " +
+                            "from athlete a inner join sport s " +
+                            "on a.sport_id = s.id " +
+                            "where s.id = ?"
+            );
+
+            requeteSql.setInt(1, idSport);
+            resultatRequete = requeteSql.executeQuery();
+
+            while (resultatRequete.next()) {
+                Athlete a =  new Athlete();
+                a.setId(resultatRequete.getInt("a_id"));
+                a.setNom(resultatRequete.getString("a_nom"));
+                a.setPrenom(resultatRequete.getString("a_prenom"));
+
+                lesAthletes.add(a);
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+            System.out.println("La requête de getLesPompiers e généré une erreur");
+        }
+        return  lesAthletes;
     }
 
 }

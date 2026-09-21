@@ -70,4 +70,8 @@ public class Athlete {
     public LocalDate getDateNaiss() {return dateNaiss;}
 
     public void setDateNaiss(LocalDate dateNaiss) {this.dateNaiss = dateNaiss;}
+
+    public Sport getLesAthletes() {
+        return null;
+    }
 }

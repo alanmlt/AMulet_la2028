@@ -22,6 +22,7 @@
         <%
                 Athlete a = (Athlete)request.getAttribute("pAthlete");
         %>
+
         <h1><%  out.println(a.getNom());out.println(a.getPrenom());%></h1>
             
                          

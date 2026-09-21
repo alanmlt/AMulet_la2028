@@ -13,7 +13,6 @@
   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
   <title>LOS ANGELES 2028</title>
 </head>
-<body>
 <head>
   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
   <title>LOS ANGELES 2028</title>

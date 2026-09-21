@@ -42,6 +42,30 @@ public class DaoSport {
 
     }
 
+    public static Sport getSportById(Connection cnx, int idSport){
+
+        Sport s = new Sport();
+        try{
+            requeteSql = cnx.prepareStatement("select s.id as s_id, s.nom as s_nom" +
+                    " from sport s " +
+                    " where s.id = ? ");
+            //System.out.println("REQ="+ requeteSql);
+            requeteSql.setInt(1, idSport);
+            resultatRequete = requeteSql.executeQuery();
+
+            if (resultatRequete.next()){
+
+                s.setId(resultatRequete.getInt("s_id"));
+                s.setNom(resultatRequete.getString("s_nom"));
+
+            }
+
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+        return s;
+    }
+
     public static ArrayList<Athlete> getSportByAthleteById(Connection cnx, int idSport) {
 
         ArrayList<Athlete> lesAthletes = new ArrayList<Athlete>();

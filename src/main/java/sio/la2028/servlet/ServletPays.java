@@ -6,9 +6,7 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import sio.la2028.database.DaoPays;
-import sio.la2028.database.DaoPays;
-import sio.la2028.form.FormPays;
-import sio.la2028.model.Pays;
+import sio.la2028.model.Athlete;
 import sio.la2028.model.Pays;
 
 import java.io.IOException;
@@ -19,7 +17,7 @@ import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-public class ServetPays {
+public class ServletPays extends HttpServlet {
 
         Connection cnx ;
 
@@ -83,82 +81,24 @@ public class ServetPays {
             if(url.equals("/la2028/ServletPays/lister"))
             {
                 ArrayList<Pays> lesPayss = DaoPays.getLesPays(cnx);
-                request.setAttribute("pLesPays", lesPays);
+                request.setAttribute("pLesPays", lesPayss);
                 //System.out.println("lister eleves - nombres d'élèves récupérés" + lesEleves.size() );
-                getServletContext().getRequestDispatcher("/vues/Pays/listerPays.jsp").forward(request, response);
+                request.getServletContext().getRequestDispatcher("/vues/pays/listerPays.jsp").forward(request, response);
             }
 
             if(url.equals("/la2028/ServletPays/consulter"))
             {
                 int idPays = Integer.parseInt((String)request.getParameter("idPays"));
-                Pays a = DaoPays.getPaysById(cnx, idPays);
-                request.setAttribute("pPays", a);
+                Pays p = DaoPays.getPaysById(cnx, idPays);
+                ArrayList<Athlete> lesAthletes = DaoPays.getPaysByAthleteById(cnx, idPays);
+                p.setLesAthletes(lesAthletes);
+                request.setAttribute("pPays", p);
+                request.setAttribute("pLesAthletes", lesAthletes);
                 //System.out.println("lister eleves - nombres d'élèves récupérés" + lesEleves.size() );
-                getServletContext().getRequestDispatcher("/vues/Pays/consulterPays.jsp").forward(request, response);
+                request.getServletContext().getRequestDispatcher("/vues/pays/consulterPays.jsp").forward(request, response);
             }
         }
+    }
 
-        /**
-         * Handles the HTTP <code>POST</code> method.
-         *
-         * @param request servlet request
-         * @param response servlet response
-         * @throws ServletException if a servlet-specific error occurs
-         * @throws IOException if an I/O error occurs
-         */
-        @Override
-        protected void doPost(HttpServletRequest request, HttpServletResponse response)
-                throws ServletException, IOException {
-
-
-            FormPays form = new FormPays();
-
-            /* Appel au traitement et à la validation de la requête, et récupération du bean en résultant */
-            Pays ath = form.ajouterPays(request);
-
-            /* Stockage du formulaire et de l'objet dans l'objet request */
-            request.setAttribute( "form", form );
-            request.setAttribute( "pPays", ath );
-
-            if (form.getErreurs().isEmpty()){
-                Pays PaysInsere =  DaoPays.addPays(cnx, ath);
-                if (PaysInsere != null ){
-                    request.setAttribute( "pPays", PaysInsere );
-                    this.getServletContext().getRequestDispatcher("/vues/Pays/consulterPays.jsp" ).forward( request, response );
-                }
-                else
-                {
-                    // Cas oùl'insertion en bdd a échoué
-                    //renvoyer vers une page d'erreur 
-                }
-
-            }
-            else
-            {
-                // il y a des erreurs. On réaffiche le formulaire avec des messages d'erreurs
-                ArrayList<Pays> lesCasernes = DaoPays.getLesPays(cnx);
-                request.setAttribute("pLesPays", lesCasernes);
-                this.getServletContext().getRequestDispatcher("/vues/Pays/ajouterPays.jsp" ).forward( request, response );
-            }
-
-
-
-
-
-
-
-        }
-
-        /**
-         * Returns a short description of the servlet.
-         *
-         * @return a String containing servlet description
-         */
-        @Override
-        public String getServletInfo() {
-            return "Short description";
-        }// </editor-fold>
-
-}
 
 

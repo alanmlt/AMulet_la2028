@@ -25,9 +25,9 @@ public class DaoEpreuve {
 
             while (resultatRequete.next()){
 
-                Epreuve p = new Epreuve();
-                p.setId(resultatRequete.getInt("id"));
-                p.setNom(resultatRequete.getString("nom"));
+                Epreuve e = new Epreuve();
+                e.setId(resultatRequete.getInt("id"));
+                e.setNom(resultatRequete.getString("nom"));
 
                 lesEpreuves.add(e);
             }
@@ -43,7 +43,7 @@ public class DaoEpreuve {
 
     public static Epreuve getEpreuveById(Connection cnx, int idEpreuve){
 
-        Epreuve e = new Epreuve();
+        Epreuve ep = new Epreuve();
         try{
             requeteSql = cnx.prepareStatement("select e.id as e_id, e.nom as e_nom" +
                     " from Epreuve e " +
@@ -54,15 +54,15 @@ public class DaoEpreuve {
 
             if (resultatRequete.next()){
 
-                e.setId(resultatRequete.getInt("e_id"));
-                e.setNom(resultatRequete.getString("e_nom"));
+                ep.setId(resultatRequete.getInt("e_id"));
+                ep.setNom(resultatRequete.getString("e_nom"));
 
             }
 
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
-        return e;
+        return ep;
     }
 
     public static ArrayList<Athlete> getEpreuveByAthleteById(Connection cnx, int idEpreuve) {

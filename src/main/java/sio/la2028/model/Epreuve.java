@@ -2,21 +2,20 @@ package sio.la2028.model;
 
 import java.util.ArrayList;
 
-public class Sport {
+public class Epreuve {
     private int id;
-    private String nom;
-    private ArrayList<Athlete> lesAthletes;
-    private ArrayList<Epreuve> lesEpreuves;
+    private String nom ;
+    private ArrayList<Athlete> lesAthletes ;
 
-    public Sport() {
+    public Epreuve() {
     }
 
-    public Sport(int id, String nom) {
+    public Epreuve(int id, String nom) {
         this.id = id;
         this.nom = nom;
     }
 
-    public Sport(int id) {
+    public Epreuve(int id) {
         this.id = id;
     }
 
@@ -44,26 +43,14 @@ public class Sport {
         this.lesAthletes = lesAthletes;
     }
 
-    public void addAthlete(Athlete a) {
+    public void addAthlete(Athlete a){
 
-        if (lesAthletes == null) {
+        if (lesAthletes == null){
             lesAthletes = new ArrayList<Athlete>();
         }
         lesAthletes.add(a);
     }
-    public ArrayList<Epreuve> getLesEpreuves() {
-        return lesEpreuves;
-    }
 
-    public void setLesEpreuves(ArrayList<Epreuve> lesEpreuves) {
-        this.lesEpreuves = lesEpreuves;
-    }
-
-    public void addEpreuve(Epreuve e){
-
-        if (lesEpreuves == null){
-            lesEpreuves = new ArrayList<Epreuve>();
-        }
-        lesEpreuves.add(e);
-    }
 }
+
+

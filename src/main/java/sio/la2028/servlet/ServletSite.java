@@ -6,6 +6,9 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import sio.la2028.database.DaoSite;
+import sio.la2028.database.DaoSite;
+import sio.la2028.model.Sport;
+import sio.la2028.model.Site;
 import sio.la2028.model.Site;
 
 import java.io.IOException;
@@ -84,6 +87,18 @@ public class ServletSite extends HttpServlet {
             request.setAttribute("siLesSites", lesSites);
             //System.out.println("lister eleves - nombres d'élèves récupérés" + lesEleves.size() );
             request.getServletContext().getRequestDispatcher("/vues/site/listerSites.jsp").forward(request, response);
+        }
+
+        if(url.equals("/la2028/ServletSite/consulter"))
+        {
+            int idSite = Integer.parseInt((String)request.getParameter("idSite"));
+            Site si = DaoSite.getSiteById(cnx, idSite);
+            ArrayList<Sport> lesSports = DaoSite.getSportBySiteById(cnx, idSite);
+            si.setLesSports(lesSports);
+            request.setAttribute("siSite", si);
+            request.setAttribute("siLesSports", lesSports);
+            //System.out.println("lister eleves - nombres d'élèves récupérés" + lesEleves.size() );
+            request.getServletContext().getRequestDispatcher("/vues/site/consulterSite.jsp").forward(request, response);
         }
     }
 }

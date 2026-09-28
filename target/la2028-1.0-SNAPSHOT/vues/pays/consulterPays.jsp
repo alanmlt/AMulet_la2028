@@ -13,6 +13,7 @@
   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
   <title>LOS ANGELES 2028</title>
     <link rel="stylesheet" href="${pageContext.request.contextPath}/css/style.css">
+    <a href="${pageContext.request.contextPath}/index.html"><div class = accueil>Accueil</div></a>
 </head>
 
 <body>

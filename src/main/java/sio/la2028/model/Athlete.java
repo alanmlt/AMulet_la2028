@@ -21,6 +21,7 @@ public class Athlete {
     private Sport sport;
     private LocalDate dateNaiss;
     private ArrayList<Epreuve> lesEpreuves;
+    private String photo;
 
 
     public Athlete() {
@@ -31,10 +32,12 @@ public class Athlete {
         this.nom = nom;
         this.prenom = prenom;
         this.dateNaiss = dateNaiss;
+        this.photo = photo;
     }
 
+    public String getPhoto() {return photo;}
 
-
+    public void setPhoto(String photo) {this.photo = photo;}
 
     public int getId() {
         return id;

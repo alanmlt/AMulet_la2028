@@ -1,12 +1,234 @@
+/* ==========================================================================
+   Thème Olympique LA 2028
+   ========================================================================== */
+
+:root {
+    --primary: #0f172a;        /* Bleu nuit moderne */
+    --primary-light: #1e3a8a;  /* Bleu olympique */
+    --accent: #d97706;         /* Or olympique */
+    --accent-hover: #b45309;
+    --bg-main: #f8fafc;
+    --card-bg: #ffffff;
+    --text-dark: #0f172a;
+    --text-muted: #64748b;
+    --border: #e2e8f0;
+}
+
+/* Reset & Base */
+* {
+    box-sizing: border-box;
+}
+
 body {
     margin: 0;
     padding: 0;
-    background-image: url('https://images.unsplash.com/photo-1507525428034-b723cf961d3e');
-    background-size: cover;
-    background-position: center;
+    font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+    background-color: var(--bg-main);
+    color: var(--text-dark);
+    line-height: 1.6;
+}
+
+header, .header-banner {
+    position: relative;
+    background: linear-gradient(135deg, #0f172a 0%, #1e3a8a 100%);
+    color: #ffffff;
+    padding: 2rem;
+    margin-bottom: 2rem;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+
+header h1, .header-banner h1 {
+    margin: 0;
+    font-size: 2rem;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+}
+
+/* Image LA 2028 fixée en haut à droite */
+.logo-la2028 {
+    position: absolute;
+    top: 15px;
+    right: 25px;
+    height: 65px;
+    width: auto;
+    border-radius: 6px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.25);
+    object-fit: contain;
+    background: #ffffff;
+    padding: 2px;
+}
+
+/* Conteneur principal */
+.container {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 0 1.5rem 3rem 1.5rem;
+}
+
+/* ==========================================================================
+   1. Styles pour les Tableaux (Listes de sports, athlètes, sites...)
+   ========================================================================== */
+
+.table, table {
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 0;
+    background: var(--card-bg);
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+    margin: 1.5rem 0;
+    border: 1px solid var(--border);
+}
+
+th {
+    background-color: var(--primary-light);
+    color: #ffffff;
+    font-weight: 600;
+    text-align: left;
+    padding: 14px 18px;
+    font-size: 0.9rem;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+td {
+    padding: 14px 18px;
+    border-bottom: 1px solid var(--border);
+    vertical-align: middle;
+}
+
+tr:last-child td {
+    border-bottom: none;
+}
+
+tr:nth-child(even) {
+    background-color: #f1f5f9;
+}
+
+tr:hover {
+    background-color: #e2e8f0;
+    transition: background-color 0.2s ease;
+}
+
+/* Liens cliquables dans les tableaux */
+td a {
+    color: var(--primary-light);
+    text-decoration: none;
+    font-weight: 600;
+    transition: color 0.2s;
+}
+
+td a:hover {
+    color: var(--accent);
+    text-decoration: underline;
+}
+
+/* ==========================================================================
+   2. Styles pour les Pages d'informations (Consultation / Détails)
+   ========================================================================== */
+
+.card, .info-card {
+    background: var(--card-bg);
+    border-radius: 12px;
+    padding: 2rem;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.06);
+    border-left: 5px solid var(--accent);
+    margin-bottom: 2rem;
+    border-top: 1px solid var(--border);
+    border-right: 1px solid var(--border);
+    border-bottom: 1px solid var(--border);
+}
+
+/* Titres dans la page d'infos */
+.card h2, .info-card h2 {
+    color: var(--primary);
+    margin-top: 0;
+    font-size: 1.6rem;
+    border-bottom: 2px solid var(--border);
+    padding-bottom: 0.5rem;
+    margin-bottom: 1.5rem;
+}
+
+/* Grille pour afficher plusieurs informations côte à côte */
+.info-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 1.5rem;
+    margin: 1.5rem 0;
+}
+
+.info-item {
+    background: var(--bg-main);
+    padding: 1rem 1.2rem;
+    border-radius: 8px;
+    border: 1px solid var(--border);
+}
+
+.info-label {
+    font-size: 0.8rem;
+    color: var(--text-muted);
+    text-transform: uppercase;
+    font-weight: 700;
+    display: block;
+    margin-bottom: 4px;
+}
+
+.info-value {
+    font-size: 1.1rem;
+    color: var(--text-dark);
+    font-weight: 600;
+}
+
+/* ==========================================================================
+   3. Boutons & Actions
+   ========================================================================== */
+
+.btn, .btn-back {
+    display: inline-block;
+    padding: 0.6rem 1.2rem;
+    background-color: var(--primary-light);
+    color: #ffffff !important;
+    text-decoration: none;
+    border-radius: 6px;
+    font-weight: 600;
+    transition: background-color 0.2s, transform 0.1s;
+}
+
+.btn:hover, .btn-back:hover {
+    background-color: var(--accent);
+    transform: translateY(-1px);
+}
+
+/* En-tête global */
+
+
+body {
+    position: relative;
+    padding-top: 20px;
+}
+
+/* Image forcée en haut à droite sur TOUTES les pages */
+body::before {
+    content: "";
+    position: absolute;
+    top: 15px;
+    right: 20px;
+    width: 120px;
+    height: 70px;
+    background-image: url('https://i0.wp.com/sportetsociete.org/wp-content/uploads/2017/08/la-2028.jpg?ssl=1');
+    background-size: contain;
     background-repeat: no-repeat;
-    background-attachment: fixed;
-    min-height: 100vh;
-    font-family: Arial, sans-serif;
-    color: #be185d; /* Rose foncé */
+    background-position: center;
+    background-color: #ffffff;
+    border-radius: 6px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.25);
+    z-index: 9999;
+}
+
+.accueil{
+    font-size : 30px;
+    text-align: center;
+    color : black;
 }

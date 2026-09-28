@@ -74,7 +74,7 @@ public class DaoAthlete {
 
         Athlete a = new Athlete();
         try{
-            requeteSql = cnx.prepareStatement("select a.id as a_id, a.nom as a_nom, a.prenom as a_prenom, a.dateNaiss as a_dateNaiss, p.id as p_id, p.nom as p_nom, s.id as s_id, s.nom as s_nom " +
+            requeteSql = cnx.prepareStatement("select a.id as a_id, a.nom as a_nom, a.prenom as a_prenom, a.dateNaiss as a_dateNaiss, a.photo as a_photo, p.id as p_id, p.nom as p_nom, s.id as s_id, s.nom as s_nom " +
                     " from athlete a inner join pays p " +
                     " on a.pays_id = p.id " +
                     " inner join sport s " +
@@ -90,6 +90,7 @@ public class DaoAthlete {
                 a.setNom(resultatRequete.getString("a_nom"));
                 a.setPrenom(resultatRequete.getString("a_prenom"));
                 a.setDateNaiss(resultatRequete.getDate("a_dateNaiss").toLocalDate());
+                a.setPhoto(resultatRequete.getString("a_photo"));
 
 
                 Pays p = new Pays();

@@ -4,8 +4,10 @@
     
     <listener>
         <listener-class>sio.la2028.database.InitConnexion</listener-class>
-    </listener> 
-    
+    </listener>
+
+
+
     <servlet>
         <servlet-name>ServletAthlete</servlet-name>
         <servlet-class>sio.la2028.servlet.ServletAthlete</servlet-class>
@@ -26,7 +28,7 @@
         <url-pattern>/ServletAthlete/ajouter</url-pattern>
     </servlet-mapping>
 
-    ------------------------------------------------------------------------
+
 
     <servlet>
         <servlet-name>ServletSport</servlet-name>
@@ -43,7 +45,7 @@
         <url-pattern>/ServletSport/consulter</url-pattern>
     </servlet-mapping>
 
-    -----------------------------------------------------------------------
+
 
     <servlet>
         <servlet-name>ServletPays</servlet-name>
@@ -60,7 +62,23 @@
         <url-pattern>/ServletPays/consulter</url-pattern>
     </servlet-mapping>
 
-    --------------------------------------------------------------------------
+
+
+    <servlet>
+        <servlet-name>ServletEpreuve</servlet-name>
+        <servlet-class>sio.la2028.servlet.ServletEpreuve</servlet-class>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>ServletEpreuve</servlet-name>
+        <url-pattern>/ServletEpreuve/lister</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>ServletEpreuve</servlet-name>
+        <url-pattern>/ServletEpreuve/consulter</url-pattern>
+    </servlet-mapping>
+
 
     <session-config>
         <session-timeout>

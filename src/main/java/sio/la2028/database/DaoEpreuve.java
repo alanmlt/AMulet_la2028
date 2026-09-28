@@ -71,9 +71,10 @@ public class DaoEpreuve {
         try {
             requeteSql = cnx.prepareStatement(
                     "select a.id as a_id, a.prenom as a_prenom, a.nom as a_nom, e.id as e_id, e.nom as e_nom " +
-                            "from athlete a inner join Epreuve e " +
-                            "on a.Epreuve_id = e.id " +
-                            "where e.id = ?"
+                            "from athlete a " +
+                            "inner join epreuve e ON a.epreuve_id = e.id " +
+                            "inner join sport s ON s.id = e.sport_id" +
+                            " where e.id = ?"
             );
 
             requeteSql.setInt(1, idEpreuve);

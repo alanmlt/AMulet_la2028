@@ -5,6 +5,7 @@
 package sio.la2028.model;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.Date;
 
 /**
@@ -19,6 +20,7 @@ public class Athlete {
     private Pays pays;
     private Sport sport;
     private LocalDate dateNaiss;
+    private ArrayList<Epreuve> lesEpreuves;
 
 
     public Athlete() {
@@ -30,6 +32,7 @@ public class Athlete {
         this.prenom = prenom;
         this.dateNaiss = dateNaiss;
     }
+
 
 
 
@@ -73,5 +76,21 @@ public class Athlete {
 
     public Sport getLesAthletes() {
         return null;
+    }
+
+    public ArrayList<Epreuve> getLesEpreuves() {
+        return lesEpreuves;
+    }
+
+    public void setLesEpreuves(ArrayList<Epreuve> lesEpreuves) {
+        this.lesEpreuves = lesEpreuves;
+    }
+
+    public void addEpreuve(Epreuve e){
+
+        if (lesEpreuves == null){
+            lesEpreuves = new ArrayList<Epreuve>();
+        }
+        lesEpreuves.add(e);
     }
 }

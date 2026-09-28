@@ -1,9 +1,9 @@
-<%@ page import="java.util.ArrayList" %>
-<%@ page import="sio.la2028.model.Sport" %><%--
+<%@ page import="sio.la2028.model.Epreuve" %>
+<%@ page import="java.util.ArrayList" %><%--
   Created by IntelliJ IDEA.
   User: sio2
-  Date: 16/09/2026
-  Time: 08:40
+  Date: 23/09/2026
+  Time: 09:58
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
@@ -17,6 +17,8 @@
         integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"
         crossorigin="anonymous">
   <link rel="stylesheet" href="${pageContext.request.contextPath}/css/style.css">
+
+  <title>LOS ANGELES 2028</title>
 
   <style>
     body {
@@ -32,16 +34,16 @@
 <nav class="navbar navbar-inverse navbar-fixed-top">
   <div class="container">
     <div class="navbar-header">
-      <a  href ='../ServletAthlete/lister' class="navbar-brand" href=".">Système de gestion des sports</a>
+      <a  href ='../ServletEpreuve/lister' class="navbar-brand" href=".">Système de gestion des Epreuves</a>
     </div>
   </div>
 </nav>
 </body>
 <div class="container special">
-  <h2 class="h2">Liste des sports</h2>
+  <h2 class="h2">Liste des Epreuves</h2>
   <div class="table-responsive">
     <%
-      ArrayList<Sport> lesSports = (ArrayList)request.getAttribute("pLesSports");
+      ArrayList<Epreuve> lesEpreuve = (ArrayList)request.getAttribute("eLesEpreuve");
     %>
     <table class="table table-striped table-sm">
       <thead>
@@ -53,14 +55,14 @@
       <tbody>
       <tr>
         <%
-          for (Sport s : lesSports)
+          for (Epreuve a : lesEpreuve)
           {
             out.println("<tr><td>");
-            out.println(s.getId());
+            out.println(a.getId());
             out.println("</td>");
 
-            out.println("<td><a href ='../ServletSport/consulter?idSport="+ s.getId()+ "'>");
-            out.println(s.getNom());
+            out.println("<td><a href ='../ServletEpreuve/consulter?idEpreuve="+ a.getId()+ "'>");
+            out.println(a.getNom());
             out.println("</a></td>");;
           }
         %>
